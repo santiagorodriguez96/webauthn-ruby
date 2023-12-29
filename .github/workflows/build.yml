@@ -9,7 +9,7 @@ name: build
 
 on:  
   push:
-    branches: [master]
+    branches: [master, sr--test-against-ruby-33]
   pull_request:
     types: [opened, synchronize]
 
@@ -34,4 +34,5 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
+    - run: ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'
     - run: bundle exec rake
